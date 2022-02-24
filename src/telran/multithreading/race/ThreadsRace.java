@@ -6,7 +6,7 @@ import java.util.List;
 import telran.view.InputOutput;
 import telran.view.Item;
 
-// V.R. It is hard to understand what is the relation between Threadrace and Item 
+// V.R. It is hard to understand what is the relation between Threadrace and Item    
 public class ThreadsRace implements Item {
 private int minThreads = ConstatsRange.MIN_THREADS.getValue();
 private int maxTreads = ConstatsRange.MAX_THREADS.getValue();

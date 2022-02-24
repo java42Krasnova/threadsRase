@@ -1,7 +1,7 @@
 package telran.multithreading.race;
 
 public enum ConstatsRange {
-	// V.R. It is very bad idea to use enum with value
+	// V.R. It is very bad idea to use enum with value   
 	// This is the set of independed constants
 	  MIN_THREADS(3),
 	  MAX_THREADS(10),
