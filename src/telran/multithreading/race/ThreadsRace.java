@@ -6,7 +6,7 @@ import java.util.List;
 import telran.view.InputOutput;
 import telran.view.Item;
 
-
+// V.R. It is hard to understand what is the relation between Threadrace and Item 
 public class ThreadsRace implements Item {
 private int minThreads = ConstatsRange.MIN_THREADS.getValue();
 private int maxTreads = ConstatsRange.MAX_THREADS.getValue();
@@ -54,6 +54,7 @@ private List<Thread> threadsList = new ArrayList<>();
 		}
 	}
 
+	// This method returns true and all is finished. Whee is menu here?
 	@Override
 	public boolean isExit() {
 		return true;
