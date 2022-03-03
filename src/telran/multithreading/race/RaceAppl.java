@@ -29,7 +29,9 @@ public class RaceAppl {
 		return res;
 	}
 	static void startGame(InputOutput io) {
+		// V.R. There isn't range's explanation (2-20) in the message
 		int nThreads = io.readInt("Enter number of the runners", 2, MAX_THREADS);
+		// V.R. There isn't range's explanation (10-1000) in the message
 		int distance = io.readInt("Enter distance", MIN_DISTANCE, MAX_DISTANCE);
 		Race race = new Race(distance, MIN_SLEEP, MAX_SLEEP);
 		Runner[] runners = new Runner[nThreads];
@@ -39,6 +41,7 @@ public class RaceAppl {
 	}
 
 	private static void displayWinner(Race race) {
+		// V.R. There isn't congratulation to the winner
 		ArrayList<Runner> winnerList = Runner.getRunnerlist();
 		System.out.println("The Result Table\n" + "________________________");
 		System.out.print("Place|  racer| 	 time\n" + "________________________\n");
