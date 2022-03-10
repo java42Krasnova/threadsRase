@@ -8,47 +8,37 @@ import java.util.Random;
 public class Runner extends Thread {
 private Race race;
 private int runnerId;
+private Instant finishTime;
 public int getRunnerId() {
 	return runnerId;
 }
-private static Instant startTime ;
-private static  final ArrayList<Runner> runnerList = new ArrayList<>();
-private long runningTime ;
-
-public long getRunningTime() {
-	return runningTime;
-}
-public static void setStartTime(Instant startTime) {
-	Runner.startTime = startTime;
-}
-
-public static ArrayList<Runner> getRunnerlist() {
-	return runnerList;
-}
-
-
 public Runner(Race race, int runnerId) {
 	this.race = race;
 	this.runnerId = runnerId;
 }
-
 @Override
 public void run() {
+	int sleepRange = race.getMaxSleep() - race.getMinSleep() + 1;
 	int minSleep = race.getMinSleep();
-	int maxSleep = race.getMaxSleep();
 	int distance = race.getDistance();
 	for (int i = 0; i < distance; i++) {
 		try {
-			sleep(new Random().ints(minSleep, maxSleep+1).findAny().getAsInt());
+			sleep((long) (minSleep + Math.random() * sleepRange));
 		} catch (InterruptedException e) {
 			throw new IllegalStateException();
 		}
 		System.out.println(runnerId);
 	}
-	
-synchronized (runnerList) {
-		runningTime = ChronoUnit.MILLIS.between(startTime, Instant.now());
-		runnerList.add(this);
-	}
+		finishTime = Instant.now();
+		finishRace();
+}
+private void finishRace() {
+	race.setWinner(runnerId);
+
+	race.getResultsTable().add(this);
+
+}
+public Instant getFinsishTime() {
+	return finishTime;
 }
 }
