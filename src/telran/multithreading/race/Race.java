@@ -2,12 +2,14 @@ package telran.multithreading.race;
 
 import java.time.Instant;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Race {
 	private int distance;
 	private int minSleep;
 	private int maxSleep;
-	private int winner = -1;
+	//private int winner = -1;
+	private AtomicInteger winner = new AtomicInteger(-1);
 	private BlockingQueue<Runner> resultsTable;
 	private Instant startTime;
 	
@@ -25,11 +27,11 @@ public class Race {
 		this.startTime = startTime;
 	}
 	public int getWinner() {
-		return winner;
+		return winner.get();
 	}
 	public void setWinner(int winner) {
-		if (this.winner == -1) {
-			this.winner = winner;
+		if (this.winner.get()== -1 ) {
+			this.winner.set(winner);
 		}
 	}
 	public int getDistance() {
